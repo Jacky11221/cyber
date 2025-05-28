@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -5,45 +6,74 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Player player1 = new Player();
-        Player player2 = new Player();
+        Scanner scanner = new Scanner(System.in);
 
-        while (player1.getHealthStat() > 0 && player2.getHealthStat() > 0) {
-            int Player1Input = get_input("would you like to kill player 1");
+        System.out.println("What is your name player 1:");
+        Player player1 = new Player(scanner.nextLine());
 
-            if(Player1Input == 1) {
-                player1.attack(player2);
-            }
+        System.out.println("What is your name player 2:");
+        Player player2 = new Player(scanner.nextLine());
 
-            printStats(player1,player2);
+        printStats(player1,player2);
 
-            int Player2Input = get_input("would you like to kill player 2");
+        gameLoop(player1,player2,scanner);
 
-            if(Player2Input == 1) {
-                player2.attack(player1);
-            }
-
-            printStats(player1,player2);
-        }
+        System.out.println("gg");
     }
 
     public static int getRandom(int range){
-        //get random then
-        return 0;
+        return ((int)(Math.random()*range) + 1);
+    }
+
+    public static void gameLoop(Player player1, Player player2, Scanner scanner){
+        int fiftyfifty = getRandom(101);
+        int index = 0;
+        ArrayList<Player> players = new ArrayList<>();
+
+        if(fiftyfifty > 50) {
+            players.add(player1);
+            players.add(player2);
+        }
+        else {
+            players.add(player2);
+            players.add(player1);
+        }
+
+        System.out.println(players.getFirst().getName() + " goes first");
+
+        while (player1.getHealthStat() > 0 && player2.getHealthStat() > 0) {
+            System.out.println();
+
+            int PlayerInput = get_input("would you like to kill " + players.getLast().getName(), scanner);
+
+            if(PlayerInput == 1) {
+                if(index == 0) {
+                    players.get(index).attack(players.get(index + 1));
+                }
+                else {
+                    players.get(index).attack(players.get(index - 1));
+                }
+            }
+
+            if(index == 1) index = 0;
+            else index++;
+
+            printStats(player1,player2);
+        }
+
+
     }
 
     public static void printStats(Player player1, Player player2){
-        System.out.println("player 1 health: " + player1.getHealthStat());
-        System.out.println("player 2 health: " + player2.getHealthStat());
+        System.out.println(player1.getName() + " health: " + player1.getHealthStat());
+        System.out.println(player2.getName() + " health: " + player2.getHealthStat());
     }
 
 
-    public static int get_input(String text){
-        Scanner scanner = new Scanner(System.in);
+    public static int get_input(String text, Scanner s){
         System.out.println( text + " (y/n): ");
 
-        String option = scanner.nextLine();
-
+        String option = s.nextLine();
 
         if(Objects.equals(option, "y")) {
             return 1;

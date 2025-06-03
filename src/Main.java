@@ -40,7 +40,7 @@ public class Main {
             players.add(player1);
         }
 
-        System.out.println("\n" + players.getFirst().getName() + " goes first");
+        System.out.println("\n" + players.getFirst().getName() + " goes first\n");
     }
 
     public static void gameLoop(Player player1, Player player2, Scanner scanner){
@@ -62,6 +62,7 @@ public class Main {
 //                case 3 -> System.out.println("Shows inventory");
                 default -> System.out.println("Not a valid option, forfeited turn");
             }
+            System.out.println("\n\n");
 
             player1.statCheck();
             player2.statCheck();

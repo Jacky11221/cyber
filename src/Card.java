@@ -82,18 +82,19 @@ public class Card {
         goodCards.add(new Card("Focused Attack Vector", 40, -40, -20, 3));
 
 
-
         //(Mostly) Defense related buffs
         normalCards.add(new Card("Secure Configuration", 0, 2, 0, 1));
         normalCards.add(new Card("Antivirus Software", 0, 3, 0, 1));
         normalCards.add(new Card("Building Security I", 0, 2, 2, 1));
+        normalCards.add(new Card("Post-Incident Recovery", 0,0,15,1));
+
 
         rareCards.add(new Card("Security Training", 0, 8, 0, 2));
         rareCards.add(new Card("Network Monitoring", 0, 2, 7, 2));
         rareCards.add(new Card("Building Security II", 0, 6, 6, 2));
 
-        goodCards.add(new Card("Advanced Firewalls and Protection", -20, 20, 0, 3));
-        goodCards.add(new Card("Data Backup", 0, 0, 30, 3));
+        goodCards.add(new Card("Advanced Firewalls and Protection", -10, 15, 0, 3));
+        goodCards.add(new Card("Data Backup", 0, 5, 30, 3));
         goodCards.add(new Card("Building Security III", 0, 15, 15, 3));
 
 
@@ -107,6 +108,6 @@ public class Card {
         rareCards.add(new Card("Eradication of Exploitations", -10, 0, 0, 2));
 
         goodCards.add(new Card("Coursera", -20, -20, -20, 3));
-        goodCards.add(new Card("Awareness Void", 0, -1000, 10, 3));
+        goodCards.add(new Card("Awareness Void", 0, -1000000, 10, 3));
     }
 }

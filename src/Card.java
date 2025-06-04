@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Card implements Cloneable{
+public class Card{
     private final String name;
     private final int attackBuff;
     private final int defenseBuff;
@@ -73,6 +73,7 @@ public class Card implements Cloneable{
     }
 
     public static Card getCard(){
+//        return normalCards.get(6);
         int rate = Main.getRandom(101);
         if(rate > 90){
             return goodCards.get(Main.getRandom(goodCards.size() - 1));
@@ -128,17 +129,7 @@ public class Card implements Cloneable{
         goodCards.add(new Card("Awareness Void (oops no defense)", 0, -1000000, 100, 3));
     }
 
-    @Override
-    public Card clone() {
-        try {
-            Card clone = (Card) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-            // create a new Card object with the same EXACT information as the current instance
-            // basically, copy every instance variable data into the new Card object
-            
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
+    public Card clone(Card card) {
+        return new Card(card.name, card.attackBuff, card.defenseBuff,card.healthRecovery, card.rarity);
     }
 }

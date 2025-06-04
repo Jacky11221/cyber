@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player {
     private final String name;
@@ -21,11 +22,19 @@ public class Player {
     public void addCard(Card card){
         System.out.println("You got the card: " + card.getName());
         System.out.println("With the effects: " + card.getEffects());
-        cards.add(card);
+        cards.add(card.clone());
 
         if(cards.size() > 3){
-            System.out.println("Too many cards, removing oldest card: " + cards.getFirst().getName());
-            cards.removeFirst();
+            System.out.println("Too many cards, you must select a card to remove (USE A NUMBER!!!)");
+            for (int i=0;i<cards.size()-1;i++) {
+                System.out.println(i + " " + cards.get(i).getName());
+                System.out.println(cards.get(i).getEffects());
+            }
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            System.out.println("You have discarded " + cards.get(choice-1).getName());
+            cards.remove(choice-1);
+
         }
     }
 
